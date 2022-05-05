@@ -1,7 +1,7 @@
 syms s;
 
 
-sb = -1;
+sb = -15;
 G = (s+2)*(s+9)/((s+10)*(s+11)*(s+12));
 collect(G);
 [A,B,C,D] = tf2ss([0 1 11 18], [1 33 362 1320]);
@@ -18,9 +18,10 @@ L3 = -(347*so)/60 - (77*so^2)/120 - (17*so^3)/720 - 781/45;
 
 Ar = [A zeros(3,1); -1 -11 -18 0];
 Br = [1 0 0 0]';
-Br = 1.3*Br;
-Er = [0 0 0 1]';
 K = acker(Ar, Br, [sb sb sb sb]);
+mnoznik = 1.30;
+Br = mnoznik*Br;
+Er = [0 0 0 1]';
 %L = sym('L', [3 1]);
 %collect(det(s*eye(3)-A+L*C))
 %collect((s-so)^3)
